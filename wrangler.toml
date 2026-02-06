@@ -1,0 +1,70 @@
+name = "solara"
+main = "./index.html"
+compatibility_date = "2024-01-01"
+
+[[pages.functions]]
+  directory = "functions"
+  included_files = ["css/*.css", "js/*.js", "*.html", "*.png", "*.svg"]
+
+[build]
+  command = "echo 'No build command required'"
+  upload = "./"
+
+[[env]]
+  name = "PASSWORD"
+  value = "your-password-here"
+
+[[env]]
+  name = "API_BASE_URL"
+  value = "https://music-api.gdstudio.xyz/api.php"
+
+[[d1_databases]]
+  binding = "DB"
+  database_name = "solara-db"
+  database_id = "solara-db"
+
+[[functions]]
+  directory = "functions"
+  runtime = "nodejs-20"
+  [functions.env]
+    PASSWORD = "your-password-here"
+    API_BASE_URL = "https://music-api.gdstudio.xyz/api.php"
+
+[dev]
+  command = "echo 'No dev command required'"
+  port = 8787
+  local_protocol = "http"
+  upstream_protocol = "https"
+  [dev.d1]
+    bindings = [{ binding = "DB", database_name = "solara-db" }]
+  [dev.functions]
+    bindings = [{ binding = "DB", database_name = "solara-db" }]
+  [dev.pages]
+    bindings = [{ binding = "DB", database_name = "solara-db" }]
+
+[publish]
+  command = "echo 'No publish command required'"
+  directory = "./"
+
+[functions.proxy]
+  runtime = "nodejs-20"
+  [functions.proxy.env]
+    API_BASE_URL = "https://music-api.gdstudio.xyz/api.php"
+
+[functions.api.storage]
+  runtime = "nodejs-20"
+  [functions.api.storage.env]
+    PASSWORD = "your-password-here"
+
+[functions.api.login]
+  runtime = "nodejs-20"
+  [functions.api.login.env]
+    PASSWORD = "your-password-here"
+
+[functions.palette]
+  runtime = "nodejs-20"
+
+[_middleware]
+  runtime = "nodejs-20"
+  [functions._middleware.env]
+    PASSWORD = "your-password-here"
