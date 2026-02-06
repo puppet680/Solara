@@ -1,6 +1,9 @@
 name = "solara"
-main = "./index.html"
-compatibility_date = "2024-01-01"
+compatibility_date = "2026-02-06"
+
+[site]
+  bucket = "./"
+  entry-point = "./"
 
 [[pages.functions]]
   directory = "functions"
