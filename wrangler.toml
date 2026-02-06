@@ -1,6 +1,7 @@
 name = "solara"
 compatibility_date = "2026-02-06"
 
+
 [site]
   bucket = "./"
   entry-point = "./"
@@ -71,3 +72,4 @@ compatibility_date = "2026-02-06"
   runtime = "nodejs-20"
   [functions._middleware.env]
     PASSWORD = "your-password-here"
+
