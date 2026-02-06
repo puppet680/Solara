@@ -1,75 +1,16 @@
 name = "solara"
 compatibility_date = "2026-02-06"
+compatibility_flags = [ "nodejs_compat" ] # 既然你用了 nodejs-20 运行时，建议加上这个
 
+# 静态资源存放的目录（即项目根目录）
+pages_build_output_dir = "./"
 
-[site]
-  bucket = "./"
-  entry-point = "./"
+# 绑定你手动创建的 D1 数据库
+#[[d1_databases]]
+#binding = "DB" # 代码中访问的变量名，如 env.DB
+#database_name = "solara-db"
+#database_id = "填写你手动创建后生成的UUID" 
 
-[[pages.functions]]
-  directory = "functions"
-  included_files = ["css/*.css", "js/*.js", "*.html", "*.png", "*.svg"]
-
-[build]
-  command = "echo 'No build command required'"
-  upload = "./"
-
-[[env]]
-  name = "PASSWORD"
-  value = "your-password-here"
-
-[[env]]
-  name = "API_BASE_URL"
-  value = "https://music-api.gdstudio.xyz/api.php"
-
-[[d1_databases]]
-  binding = "DB"
-  database_name = "solara-db"
-  database_id = "solara-db"
-
-[[functions]]
-  directory = "functions"
-  runtime = "nodejs-20"
-  [functions.env]
-    PASSWORD = "your-password-here"
-    API_BASE_URL = "https://music-api.gdstudio.xyz/api.php"
-
-[dev]
-  command = "echo 'No dev command required'"
-  port = 8787
-  local_protocol = "http"
-  upstream_protocol = "https"
-  [dev.d1]
-    bindings = [{ binding = "DB", database_name = "solara-db" }]
-  [dev.functions]
-    bindings = [{ binding = "DB", database_name = "solara-db" }]
-  [dev.pages]
-    bindings = [{ binding = "DB", database_name = "solara-db" }]
-
-[publish]
-  command = "echo 'No publish command required'"
-  directory = "./"
-
-[functions.proxy]
-  runtime = "nodejs-20"
-  [functions.proxy.env]
-    API_BASE_URL = "https://music-api.gdstudio.xyz/api.php"
-
-[functions.api.storage]
-  runtime = "nodejs-20"
-  [functions.api.storage.env]
-    PASSWORD = "your-password-here"
-
-[functions.api.login]
-  runtime = "nodejs-20"
-  [functions.api.login.env]
-    PASSWORD = "your-password-here"
-
-[functions.palette]
-  runtime = "nodejs-20"
-
-[_middleware]
-  runtime = "nodejs-20"
-  [functions._middleware.env]
-    PASSWORD = "your-password-here"
-
+[vars]
+PASSWORD = "your-password-here"
+API_BASE_URL = "https://music-api.gdstudio.xyz/api.php"
