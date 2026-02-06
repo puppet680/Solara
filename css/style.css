@@ -131,7 +131,8 @@ body.background-transitioning .background-stage__layer--transition {
     grid-template-columns: 300px 1fr 1fr;
     gap: 20px;
     transition: background 0.5s, box-shadow 0.5s;
-    overflow: visible;
+    /* overflow: visible; */
+    overflow: hidden;
     position: relative;
 }
 
